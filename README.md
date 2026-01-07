@@ -1,28 +1,37 @@
-# Create data frame for BOSSbase dataset
-
+# BOSSbase dataset manifest creation
+This repository contains code to create a structured DataFrame (manifest) for the BOSSbase 1.01 image dataset.
+The manifest collects essential metadata for each image and prepares the dataset for steganography and steganalysis research, including future controlled stego generation.
 ## What is the BOSSbase dataset?
-This is an image dataset that includes 10,000 images without change or "Stego" images. These are "Cover" images.
-this dataset created by Binghamton University to useful for students in Steganography and use it to create stego images with stegonography algorithms.
+BOSSbase (Break Our Steganographic System) is a widely used benchmark dataset in the field of steganography and steganalysis.
 
-## What is this data frame including?
-this dataset created to including some of information from these images, the information such as:
+-It contains 10,000 original (unaltered) images
 
-"image_id": number part of filename for each image
+-All images are cover images (no embedded messages)
 
-"path": directory for each image
+-Images are stored in the spatial domain (PPM format)
 
-"w": weigh for image size
+-The dataset was created by Binghamton University
 
-"h": heigh for image size
+-It is commonly used to:
 
-"algo": the algorithm that use it for create stego image
+    -Evaluate steganographic algorithms
 
-"cover_stego": define what is the image type
+    -Generate controlled stego images
 
-"split": spliting all of the image dataset between train, test and val
+    -Train and test steganalysis models
+    
+## What does this code do?
+This project builds a metadata DataFrame from the BOSSbase dataset and saves it as a manifest file (parquet and csv).
 
-"hash": create from file bit
-
-"decode_ok: detect image can open or not
-
-"format": image format
+| Column name   | Description                                          |
+| ------------- | ---------------------------------------------------- |
+| `image_id`    | Numeric identifier extracted from the image filename |
+| `path`        | Absolute path to the image file                      |
+| `w`           | Width (pixels)                                       |
+| `h`           | Height (pixels)                                      |
+| `format`      | Image format (PPM)                                   |
+| `decode_ok`   | Whether the image can be successfully opened         |
+| `hash`        | SHA-256 hash of the image file                       |
+| `split`       | Dataset split (`train`, `val`, or `test`)            |
+| `cover_stego` | Image type (`cover`)                                 |
+| `algo`        | Steganography algorithm used (empty for covers)      |
