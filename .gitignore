@@ -1,3 +1,5 @@
 BOSSbase_1.01/
 .venv/
 .idea
+__pycache__/
+*.pyc
